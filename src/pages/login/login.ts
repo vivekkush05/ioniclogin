@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage,NavParams,Events,ToastController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading,NavParams,Events,ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServerResponse} from "../../Interface/ServerResponse";
 //import {Device} from '@ionic-native/device';
-
 import {Storage} from '@ionic/storage';
-/**
- * Generated class for the Login page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-@IonicPage()
+import {HomePage} from "../home/home";
+import { RegisterPage } from '../register/register';
+
+
+
+//@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -22,8 +20,7 @@ export class LoginPage  {
   private loginForm: FormGroup;  
   loading: Loading;
 
-  /*constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }*/
+  
   constructor(private nav: NavController,public navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController,
 			private loadingCtrl: LoadingController,private storage: Storage, private events: Events,private formBuilder: FormBuilder, private toastCtrl: ToastController) { 
 			
@@ -37,19 +34,16 @@ export class LoginPage  {
 			
 			}
  
-   public createAccount() {
-		this.nav.push('RegisterPage');
-	}
-
-
 
   public login() {
         this.showLoading();
         this.auth.login(JSON.stringify(this.loginForm.value)).subscribe(
             (res: ServerResponse) => {
-                this.dismissLoader();
+				
+				this.dismissLoader();
                 let data = this.responseHandler(res);
-                if (data == 0) {
+				
+				if (data == 0) {
                     return;
                 }
 
@@ -87,8 +81,10 @@ export class LoginPage  {
 
     }
 
-	  redirect() {
-        this.nav.setRoot('HomePage');
+	
+	
+	redirect() {
+        this.nav.push(HomePage);
     }	
 
 
@@ -110,6 +106,11 @@ export class LoginPage  {
       });
 	}
  */
+	 register() {
+        this.nav.push(RegisterPage);
+    }
+
+ 
  
     responseHandler(response: ServerResponse): any {
         if (typeof response.error != "undefined" && response.error != "") {

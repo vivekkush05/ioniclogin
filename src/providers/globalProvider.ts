@@ -54,16 +54,17 @@ export class GlobalProvider {
 
     post(url, request) {
         let headers = new Headers();
-        //headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		// header('Access-Control-Allow-Origin: *'); 
-			//headers.append('Accept', 'application/json');
-		headers.append('Content-Type', 'application/json');
-
+			headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+			headers.append('Access-Control-Allow-Origin' , '*');
+			headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+			//headers.append('Accept','application/json');
+			//headers.append('content-type','application/json');
+		
+		
         return this.http.post(API.baseUrl + url, 'data=' + request, {  headers: headers})
 		.timeout(50000).map((res) => {
-            let data: ServerResponse = res.json();
-            if (data.statuscode != 200) {
-                /* Error */
+				let data: ServerResponse = res.json();
+			 if (data.statuscode != 200) {
                 let errMsg = {
                     status: data.statuscode,
                     message: data.message,
@@ -71,6 +72,7 @@ export class GlobalProvider {
                 };
                 return Observable.throw(errMsg);
             }
+			
             return data || {};
         }).catch(error => {
             let serverError = error;

@@ -3,12 +3,6 @@ import { NavController, AlertController, IonicPage } from 'ionic-angular';
 //import { AuthService } from '../../providers/auth-service';
  
 
-/**
- * Generated class for the Register page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
