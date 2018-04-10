@@ -1,1 +1,60 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu id="sidebar" [content]="content">
+    <ion-content>
+        <ion-grid>
+            <ion-row *ngIf="!loggedIn">
+                <ion-col col-auto margin-left>
+                    <ion-avatar item-start>
+                        <img src="assets/images/landing/profile_icon.png" class="ion-head-avtar" alt="img">
+                    </ion-avatar>
+                </ion-col>
+                <ion-col margin-left margin-right>
+                    <h5 class="sidebar_header_logout">Welcome</h5>
+                    <p no-margin=""><a href="javascript:void(0);" menuClose (click)="loginPage()"
+                                       class="green_text_color">Login</a>&nbsp;<span class="grey_color_text">|</span>
+                        <a href="javascript:void(0);" (click)="register()" menuClose class="green_text_color">Join
+                            Us</a></p>
+
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="loggedIn">
+                <ion-col col-auto margin-left>
+                    <ion-avatar item-start menuClose>
+                        <img [src]="getProfilePic()"
+                             class="ion-head-avtar" alt="img">
+                    </ion-avatar>
+                </ion-col>
+                <ion-col margin-left margin-right>
+                    <h5 class="sidebar_header_logout">Hi {{ storedData?.name }}</h5>
+                    <p no-margin=""><a href="javascript:void(0);" menuClose (click)="logout()"
+                                       class="red-Color">Logout</a></p>
+                </ion-col>
+            </ion-row>
+            <div class="divider"></div>
+        </ion-grid>
+
+     <!--   <ion-list no-lines>
+            <button menuClose (click)="getProductsBuyCategory(cat.id,cat.name)" no-margin ion-item
+                    *ngFor="let cat of categories"
+                    class="sidebar_navs">
+                <ion-avatar item-start class="ion-avatar-noMargin">
+                    <img [src]="cat.cat_icon" alt="img" class="sidebar_icon_width icon_margin">
+                </ion-avatar>
+                <span class="sidebar-font-size-bold" text-uppercase>{{cat.name}}</span>
+            </button>
+            <ng-container *ngFor="let p of pages">
+                <button *ngIf="!((p.title == 'Login' && loggedIn)||(p.title == 'My Account' && !loggedIn)||(p.title == 'My Orders' && !loggedIn) )"
+                        no-margin menuClose ion-item (click)="openPage(p)" class="sidebar_navs">
+                    <ion-avatar item-start class="ion-avatar-noMargin"><img [src]="p.image" alt="img"
+                                                                            class="sidebar_icon_width icon_margin"/>
+                    </ion-avatar>
+                    <span class="sidebar-font-size-bold" text-uppercase>{{p.title}}</span>
+                </button>
+            </ng-container>
+
+        </ion-list>-->
+    </ion-content>
+</ion-menu>
+
+
+
+<ion-nav #content [root]="rootPage" swipeBackEnabled="false" ></ion-nav>

@@ -57,7 +57,7 @@ export class GlobalProvider {
 			headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 			headers.append('Access-Control-Allow-Origin' , '*');
 			headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-			//headers.append('Accept','application/json');
+			headers.append('Accept','application/json');
 			//headers.append('content-type','application/json');
 		
 		

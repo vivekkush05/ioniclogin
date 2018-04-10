@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Loading, LoadingController, MenuController, NavController, NavParams, ToastController ,AlertController,Events} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {Storage} from '@ionic/storage';
+import {LoginPage} from "../login/login";
+import {HEADERCONSTANTS} from "../../constants/headerConstants";
 
 @Component({
   selector: 'page-home',
@@ -9,15 +11,22 @@ import {Storage} from '@ionic/storage';
 })
 export class HomePage {
 	
-	
-	 loader: Loading;
+	storedData: any = {};
+	loader: Loading;
+    header = HEADERCONSTANTS.homePage;
+	 
 
-  constructor(public navCtrl: NavController,private alertCtrl: AlertController,private storage: Storage,private events: Events) {
+	constructor(public navCtrl: NavController,private alertCtrl: AlertController,private storage: Storage,private events: Events,public menu: MenuController) {
 
-  }
+	}
 	
+	ionViewDidLoad() {
+        this.menu.enable(true, "sidebar");
+		
+    }
 	
-   logout() {
+  
+	logout() {
       //  this.showLoader();
         this.events.publish('user:logout');
         this.storage.remove('loginData').then(
@@ -26,7 +35,7 @@ export class HomePage {
         );
         this.presentAlert('Come Back Soon!', 'You have been logged out successfully');
         //this.dismissLoader();
-		//this.navCtrl.push('LoginPage');
+		this.navCtrl.push(LoginPage);
     }
 
 	

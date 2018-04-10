@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading,NavParams,Events,ToastController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading,NavParams,Events,ToastController,MenuController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServerResponse} from "../../Interface/ServerResponse";
@@ -21,7 +21,7 @@ export class LoginPage  {
   loading: Loading;
 
   
-  constructor(private nav: NavController,public navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController,
+  constructor(private nav: NavController,public navParams: NavParams, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController,
 			private loadingCtrl: LoadingController,private storage: Storage, private events: Events,private formBuilder: FormBuilder, private toastCtrl: ToastController) { 
 			
 			
@@ -32,10 +32,18 @@ export class LoginPage  {
             //device_type: [this.device.platform, Validators.required]
         });
 			
-			}
- 
+	}
+	
+	ionViewDidLoad() {
+		this.menu.enable(false, 'sidebar');
+	}
+	
+	ionViewWillLeave() {
+    // enable the root left menu when leaving this page
+     this.menu.enable(true, 'sidebar');
+	}
 
-  public login() {
+	public login() {
         this.showLoading();
         this.auth.login(JSON.stringify(this.loginForm.value)).subscribe(
             (res: ServerResponse) => {
@@ -84,28 +92,10 @@ export class LoginPage  {
 	
 	
 	redirect() {
-        this.nav.push(HomePage);
+        this.nav.setRoot(HomePage);
     }	
 
 
-	
-  /* public login1() {
-	   
-	   
-    this.showLoading()
-	this.auth.login(this.registerCredentials).subscribe(
-	allowed => {
-      if (allowed) {        
-        this.nav.setRoot('HomePage');
-      } else {
-        this.showError("Access Denied");
-      }
-    },
-      error => {
-        this.showError(error);
-      });
-	}
- */
 	 register() {
         this.nav.push(RegisterPage);
     }
@@ -136,15 +126,15 @@ export class LoginPage  {
     }
 	
 	
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
-  }
+	showLoading() {
+		this.loading = this.loadingCtrl.create({
+		  content: 'Please wait...',
+		  dismissOnPageChange: true
+		});
+		this.loading.present();
+	}
   
-   dismissLoader() {
+	dismissLoader() {
         this.loading.dismiss();
     }
   
@@ -159,8 +149,7 @@ export class LoginPage  {
     });
     alert.present(prompt);
   }
-	/*ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
-  }*/
+  
+  
 
 }
