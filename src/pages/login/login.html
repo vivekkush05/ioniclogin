@@ -18,7 +18,7 @@
   </ion-navbar>
 </ion-header>
 -->
-
+<!--
 <ion-content class="login-content" padding>
   <ion-row class="logo-row">
     <ion-col></ion-col>
@@ -34,11 +34,19 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="login" formControlName="login" required></ion-input>
+					<ion-label floating>Email ID <span class="color_error">*</span></ion-label>
+					<ion-input type="email" clearInput="true" formControlName="login"></ion-input>
+             <ion-input type="text" placeholder="Email" name="login" formControlName="login" required></ion-input>
             </ion-item>
+			
+			
+			
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" formControlName="password" required></ion-input>
+						<ion-label floating>Password <span class="color_error">*</span></ion-label>
+						<ion-input type="password" clearInput="true"  formControlName="password"></ion-input>
+						
+				<ion-input type="password" placeholder="Password" name="password" formControlName="password" required></ion-input>
             </ion-item>
             
           </ion-list>
@@ -48,8 +56,7 @@
       <ion-row>
         <ion-col class="signup-col">
 			<button ion-button class="submit-btn" full type="submit" >Login</button>
-          <!--<button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>-->
-          <!--<button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>-->
+
         </ion-col>
 		<ion-col margin-top text-center="">
         <p class="auto"><span class="grey_color_text">Don't have an account ? </span><a href="javascript:void(0);" (click)="register()"  class="green_color_btn_clear">Join Us</a></p>
@@ -59,4 +66,44 @@
       
     </form>
   </div>
+</ion-content>
+-->
+          <!--<button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>-->
+          <!--<button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>-->
+
+
+
+
+
+
+<ion-content padding no-bounce><br>
+  <div padding="" text-center="">
+    <img src="http://placehold.it/300x200" alt="logo" class="cashless_logo" />
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-list class="float_input_border">
+      <ion-item no-padding >
+        <ion-label floating>Email ID <span class="color_error">*</span></ion-label>
+        <ion-input type="email" clearInput="true" formControlName="login"></ion-input>
+      </ion-item>
+      <ion-item no-padding>
+        <ion-label floating>Password <span class="color_error">*</span></ion-label>
+        <ion-input type="password" clearInput="true"  formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item no-padding style="display: none;">
+       
+      </ion-item>
+      <ion-row>
+        <ion-col>&nbsp;</ion-col>
+        <ion-col text-end=""><a href="javascript:void(0);" class="green_color_btn_clear">Forgot password ?</a></ion-col>
+      </ion-row>
+      <ion-row margin-top>
+        <button ion-button  color="secondary" class="green_color_btn" full large type="submit" item-end="" text-end="" text-capitalize>Login</button>
+      </ion-row>
+      <ion-row margin-top text-center="">
+        <p class="auto"><span class="grey_color_text">Don't have an account ? </span><a href="javascript:void(0);" (click)="register()"  class="green_color_btn_clear">Join Us</a></p>
+      </ion-row>
+    </ion-list>
+  </form>
 </ion-content>

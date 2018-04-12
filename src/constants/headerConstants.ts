@@ -289,5 +289,8 @@ export  const HEADERCONSTANTS= {
         showCart:false,
         showWishList:false,
         showMenu:false
-    }
+    },
+	Pages:{
+		 title:"pages"
+	}
 };

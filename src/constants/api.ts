@@ -1,5 +1,5 @@
 export const API = {
-    baseUrl: "http://127.0.0.1",
+    baseUrl: "http://127.0.0.1/vivek",
     imageUrl: "",
     requests: {
         aboutUs: {
@@ -173,6 +173,10 @@ export const API = {
         },
         login: {
             post: "/logincheck.php",
+            param: ""
+        },
+		signup: {
+            post: "/signupcheck.php",
             param: ""
         },
         logout: {

@@ -3,12 +3,15 @@ import { Nav,Platform ,Events,AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage   } from '@ionic/storage';
+import {HEADERCONSTANTS} from "../constants/headerConstants";
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 
 
-
+ 
+ 
+ 
 @Component({
   templateUrl: 'app.html'
 })

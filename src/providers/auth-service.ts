@@ -30,7 +30,7 @@ export class AuthService {
  
 
 	//currentUser: User;
-	constructor(private http: GlobalProvider) {
+	constructor(private http: GlobalProvider) {  
 
     }
  
@@ -42,7 +42,7 @@ export class AuthService {
 
 	public register(credentials) {
 		//return this.http.post(API.requests.login.post, data);
-  }
+	}
  
 
 }
