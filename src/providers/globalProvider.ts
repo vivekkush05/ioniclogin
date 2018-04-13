@@ -64,7 +64,7 @@ export class GlobalProvider {
 		
 		
         return this.http.post(API.baseUrl + url, 'data=' + request, {  headers: headers})
-		.timeout(50000).map((res) => {
+		.timeout(5000).map((res) => {
 				let data: ServerResponse = res.json();
 			 if (data.statuscode != 200) {
                 let errMsg = {
@@ -128,8 +128,3 @@ export class GlobalProvider {
     }
 
 }
-
-
-
-
-
