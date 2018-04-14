@@ -1,32 +1,35 @@
-import { Component } from '@angular/core';
-import { Loading, LoadingController, MenuController, NavController, NavParams, ToastController ,AlertController,Events} from 'ionic-angular';
+import { Component ,ViewChild} from '@angular/core';
+import { Nav,Loading, LoadingController, MenuController, NavController,IonicPage, NavParams, ToastController ,AlertController,Events} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {Storage} from '@ionic/storage';
 import {LoginPage} from "../login/login";
 import {HEADERCONSTANTS} from "../../constants/headerConstants";
+
+/*
+@IonicPage({
+   // name: 'HomePage',
+    segment: 'HomePage'
+    
+})
+*/
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-	
-	storedData: any = {};
+   storedData: any = {};
 	loader: Loading;
     header = HEADERCONSTANTS.homePage;
 	 
 
 	constructor(public navCtrl: NavController,private alertCtrl: AlertController,private storage: Storage,private events: Events,public menu: MenuController) {
-
+    
+        this.menu.enable(true, 'sidebar');
 	}
 	
-	ionViewDidLoad() {
-        this.menu.enable(true, "sidebar");
-		
-    }
 	
-  
-	logout() {
+/*	logout() {
       //  this.showLoader();
         this.events.publish('user:logout');
         this.storage.remove('loginData').then(
@@ -37,7 +40,7 @@ export class HomePage {
         //this.dismissLoader();
 		this.navCtrl.push(LoginPage);
     }
-
+*/
 	
     presentAlert(title, message) {
         let alert = this.alertCtrl.create({

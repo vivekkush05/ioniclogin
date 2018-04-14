@@ -54,15 +54,11 @@ export class GlobalProvider {
 
     post(url, request) {
         let headers = new Headers();
-			//headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-			headers.append('Access-Control-Allow-Origin' , '*');
-			headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-			headers.append('Accept','application/json');
-			headers.append('content-type','application/json');
-			headers.append('Access-Control-Allow-Credentials','true');
-			headers.append('Methods', 'POST');
-		
-		
+
+            headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            headers.append('Accept','application/json');
+         
+            
         return this.http.post(API.baseUrl + url, 'data=' + request, {  headers: headers})
 		.timeout(5000).map((res) => {
 				let data: ServerResponse = res.json();

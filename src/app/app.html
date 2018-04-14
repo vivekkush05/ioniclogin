@@ -32,8 +32,8 @@
             <div class="divider"></div>
         </ion-grid>
 
-     <!--   <ion-list no-lines>
-            <button menuClose (click)="getProductsBuyCategory(cat.id,cat.name)" no-margin ion-item
+        <ion-list no-lines>
+     <!--       <button menuClose (click)="getProductsBuyCategory(cat.id,cat.name)" no-margin ion-item
                     *ngFor="let cat of categories"
                     class="sidebar_navs">
                 <ion-avatar item-start class="ion-avatar-noMargin">
@@ -41,8 +41,9 @@
                 </ion-avatar>
                 <span class="sidebar-font-size-bold" text-uppercase>{{cat.name}}</span>
             </button>
+        -->
             <ng-container *ngFor="let p of pages">
-                <button *ngIf="!((p.title == 'Login' && loggedIn)||(p.title == 'My Account' && !loggedIn)||(p.title == 'My Orders' && !loggedIn) )"
+                <button *ngIf="!((p.title == 'Login' && loggedIn))"
                         no-margin menuClose ion-item (click)="openPage(p)" class="sidebar_navs">
                     <ion-avatar item-start class="ion-avatar-noMargin"><img [src]="p.image" alt="img"
                                                                             class="sidebar_icon_width icon_margin"/>
@@ -51,7 +52,7 @@
                 </button>
             </ng-container>
 
-        </ion-list>-->
+        </ion-list>
     </ion-content>
 </ion-menu>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading,NavParams,Events,ToastController,MenuController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController,IonicPage, Loading,NavParams,Events,ToastController,MenuController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServerResponse} from "../../Interface/ServerResponse";
@@ -11,6 +11,14 @@ import { RegisterPage } from '../register/register';
 
 
 //@IonicPage()
+/*
+@IonicPage({
+   // name: 'LoginPage',
+    //segment: 'LoginPage'
+   // defaultHistory: ['LoginPage', 'Second']
+})
+*/
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -37,12 +45,8 @@ export class LoginPage  {
 	ionViewDidLoad() {
 		this.menu.enable(false, 'sidebar');
 	}
-	
-	ionViewWillLeave() {
-    // enable the root left menu when leaving this page
-     this.menu.enable(true, 'sidebar');
-	}
-
+    
+    
 	public login() {
         this.showLoading();
         this.auth.login(JSON.stringify(this.loginForm.value)).subscribe(
@@ -97,7 +101,7 @@ export class LoginPage  {
 
 
 	 register() {
-        this.nav.push(RegisterPage);
+        this.nav.push('RegisterPage');
     }
 
  
@@ -147,7 +151,7 @@ export class LoginPage  {
       subTitle: text,
       buttons: ['OK']
     });
-    alert.present(prompt);
+    alert.present(alert);
   }
   
   

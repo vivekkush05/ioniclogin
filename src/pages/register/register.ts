@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController,Loading, AlertController, IonicPage, Events,ToastController,LoadingController } from 'ionic-angular';
+import { NavController,Loading, AlertController, IonicPage, Events,ToastController,LoadingController,MenuController } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { RegisterService } from '../../providers/RegisterService';
+import {ServerResponse} from "../../Interface/ServerResponse";
  
 
 
-@IonicPage()
+@IonicPage({
+   name: 'RegisterPage',
+    segment: 'RegisterPage',
+    priority: 'high'
+})
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -18,7 +24,7 @@ export class RegisterPage  {
   loader: Loading;
 
   constructor(private nav: NavController, private alertCtrl: AlertController,private registerService: RegisterService,private events: Events,private formBuilder: FormBuilder,
-					private toastCtrl: ToastController,private loadingCtrl: LoadingController) { 
+					private toastCtrl: ToastController,private loadingCtrl: LoadingController, public menu: MenuController) { 
   
 	  this.registerForm = this.formBuilder.group({
             name: 	  ['',  Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -65,11 +71,15 @@ export class RegisterPage  {
     alert.present();
   }
   */
+ionViewDidLoad() {
+    this.menu.enable(false, 'sidebar');
+}
 
  
     register() {
         this.showLoader();
-        this.registerService.register(JSON.stringify(this.registerForm.value)).subscribe((res) => {
+        this.registerService.register(JSON.stringify(this.registerForm.value)).subscribe(
+            (res: ServerResponse) => {
             /* Hande response */
             this.dismissLoader();
             let data = this.responseHandler(res);
@@ -80,7 +90,7 @@ export class RegisterPage  {
             if(data.body == false){
                 this.presentToast(data.message, "bottom", 3000);
             } else {
-                this.data = data.body;
+               // this.data = data.body;
                 this.presentToast(data.message, "bottom", 3000);
             }
         }, err => {

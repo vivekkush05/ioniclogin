@@ -4,40 +4,34 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage   } from '@ionic/storage';
 import {HEADERCONSTANTS} from "../constants/headerConstants";
-
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
+import { MyaccountPage } from '../pages/my-account/my-account';
 
-
- 
- 
- 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   //rootPage:any = LoginPage;
-	  @ViewChild(Nav) nav: Nav;
+      @ViewChild(Nav) nav: Nav;
+     
   
 	public rootPage: any; 
 	loggedIn: boolean = false;
     storedData: any = null;
     name = '';
-	 pages: [{
-        title: string,
-        component: any,
-        image: string
-    }] = [
+	 pages:  any[] =[
         {
-            title: 'Deals & Plans',
+            title: 'Home Page',
             component: HomePage,
             image: 'assets/images/landing/deal_icon_sidenav.png'
         },
-        
+        {
+            title: 'My Account',
+            component: MyaccountPage,
+            image:'assets/images/landing/deal_icon_sidenav.png'
+        }
     ];
-	
-	
-	
 	
   constructor(platform: Platform, statusBar: StatusBar,private alertCtrl: AlertController, splashScreen: SplashScreen,private storage: Storage,private events: Events) {
 	   
@@ -88,7 +82,7 @@ export class MyApp {
   
   
     openPage(page) {
-    this.nav.push(page.component);
+        this.nav.setRoot(page.component);
 	}
   
   
@@ -103,7 +97,7 @@ export class MyApp {
             (error) => console.log(error)
         );
         this.presentAlert('Come Back Soon!', 'You have been logged out successfully');
-		this.nav.push(LoginPage);
+		this.nav.setRoot(LoginPage);
 	}
 	
 	presentAlert(title, message) {
